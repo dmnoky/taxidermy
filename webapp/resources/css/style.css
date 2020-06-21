@@ -1,0 +1,238 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    padding: 20px 65px 0 65px;
+    background-color: #f8ffff;
+    height: 80%;
+}
+
+.content {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 90px;
+}
+footer {
+    text-align: center;
+}
+
+hr {
+    border: none; /* Убираем границу */
+    background-color: black; /* Цвет линии */
+    color: black; /* Цвет линии для IE6-7 */
+    height: 2px; /* Толщина линии */
+}
+
+/* Header */
+    header {
+        background: #dedede;
+        border-bottom: solid 1px #999999;
+        /*background-position: top right;
+        background-repeat: no-repeat;
+        background-size: cover;*/
+        content: '';
+        display: block;
+        height: 5em;
+        width: 100%;
+    }
+
+    .logo-img img {
+        padding-top: 1em;
+        padding-left: 1em;
+        max-width: 3em;
+        max-height: 3em;
+    }
+
+    .logo-text {
+        position:absolute;
+        padding: 1em 0 0 0.5em;
+        font-size: 28px;
+        color: #ffffff;
+    }
+
+    .user-form {
+        float: right;
+        padding: 1em 0.5em 0 0;
+        font-size: 16px;
+    }
+
+/* Navigation Panel */
+        #main-nav-panel {
+        height: 35px;
+        background: #dedede;
+        border-bottom: solid 1px #999999;
+    }
+
+    #main-nav-panel ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    #main-nav-panel ul li {
+        float: left;
+        border-left: 1px double #999999;
+        list-style: none;
+    }
+    
+    #main-nav-panel ul li a {
+        display: block;
+        padding: 8px 10px 10px;
+        text-decoration: none;
+    }
+
+    #main-nav-panel ul li ul {
+        display: none;
+    }
+
+    #main-nav-panel ul li:hover ul {
+        display: block;
+        position: absolute;
+        padding-left: 3px;
+    }
+
+    #main-nav-panel ul li:hover ul li {
+        float: none;
+    }
+
+    #main-nav-panel ul li:hover ul li a {
+        padding: 6px 0 8px;
+    }
+    
+    #main-nav-panel ul.dropdown li {
+        border: 1px double #999999;
+        background: #dedede;   
+        min-width: 5em;
+        max-width: 12em;
+        padding-left: 0.6em;
+    }
+     /******************/
+/***************/
+
+#container {
+    width: 500px;
+    background-color: #fff;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+    /***** Форма *****/
+    .form-signin {
+        max-width: 660px;
+        margin: 0 auto;
+    }
+
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        min-width: 250px;
+    }
+
+    .form-signin input {
+        width: 250px;
+    }
+
+    .form-signin textarea {
+        width: 700px;
+        min-height: 150px;
+    }
+
+    .form-signin-option {
+        min-width: 150px;
+    }
+
+    .has-error {
+        color: red;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .button-outside-form {
+        font-size: 14px;
+        position: relative;
+        bottom: 10px; left: 10px;
+    }
+
+    .button-inside-form {
+        font-size: 12px;
+        margin-top: 2px;
+    }
+/*********************/
+/*section*/
+.model-view {
+    width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.form-model {
+    border:2px #000 solid;
+    border-radius: 10px;
+    margin: 2px;
+    width: 800px;
+    padding: 10px;
+}
+
+.form-model button {
+    top: 5px;
+}
+
+.form-model h4 {
+    margin: 10px 8px 8px 8px;
+}
+
+.form-model img {
+    position: relative;
+    max-height:120px;
+    max-width:120px;
+    margin: 10px 0 0 0;
+    display: inline-block;
+}
+
+.admin-model-menu form {
+    float: right;
+    margin: 5px;
+}
+
+.admin-model-menu button {
+    float: right;
+    margin: 5px;
+}
+
+.page-navigation-list button {
+    display: inline-block;
+    margin: 3px;
+}
+
+.list * {
+    display: inline-block;
+    margin: 1px;
+}

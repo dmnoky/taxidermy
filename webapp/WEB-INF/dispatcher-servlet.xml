@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- Разрешаем использование аннотаций Spring MVC (то есть @Controller и.т.д) -->
+    <mvc:annotation-driven/>
+    <tx:annotation-driven/>
+    <sec:global-method-security pre-post-annotations="enabled" />
+    <!-- Пакет контроллеров -->
+    <context:component-scan base-package="com.dmnoky.taxidermy.controller" />
+    <!-- Пакет перехватчиков -->
+    <context:component-scan base-package="com.dmnoky.taxidermy.interceptor" />
+
+    <!-- Для упрощения имени возврощаемых страниц в контроллерах (их методах) -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- INTERCEPTORS -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.dmnoky.taxidermy.interceptor.HeaderViewInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- EXCEPTION HANDLER -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.sql.SQLException">
+                    error/sql_exception
+                </prop>
+                <prop key="org.springframework.dao.DataIntegrityViolationException">
+                    error/data_exception
+                </prop>
+            </props>
+        </property>
+        <property name="exceptionAttribute" value="exception"/>
+        <property name="defaultErrorView" value="error/default_error"/>
+    </bean>
+
+    <!-- MULTIPART RESOLVER -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="4294967295"/>
+    </bean>
+
+    <!-- SERVICE -->
+    <bean id="workerService" class="com.dmnoky.taxidermy.service.user.WorkerServiceImpl">
+        <property name="workerDao" ref="workerDao"/>
+        <property name="bCryptPasswordEncoder" ref="encoder"/>
+    </bean>
+    <bean id="clientService" class="com.dmnoky.taxidermy.service.user.ClientServiceImpl">
+        <property name="clientDao" ref="clientDao"/>
+        <property name="bCryptPasswordEncoder" ref="encoder"/>
+    </bean>
+    <bean id="productService" class="com.dmnoky.taxidermy.service.product.ProductServiceImpl">
+        <property name="productDao" ref="productDao"/>
+    </bean>
+    <bean id="animalService" class="com.dmnoky.taxidermy.service.animal.AnimalServiceImpl">
+        <property name="animalDao" ref="animalDao"/>
+    </bean>
+    <bean id="typeService" class="com.dmnoky.taxidermy.service.animal.subcategory.TypeServiceImpl">
+        <property name="typeDao" ref="typeDao"/>
+    </bean>
+    <bean id="subsidiaryService" class="com.dmnoky.taxidermy.service.animal.subcategory.SubsidiaryServiceImpl">
+        <property name="subsidiaryDao" ref="subsidiaryDao"/>
+    </bean>
+
+    <!-- VALIDATOR -->
+    <bean id="workerValidator" class="com.dmnoky.taxidermy.validator.user.WorkerValidator">
+        <property name="workerService" ref="workerService"/>
+    </bean>
+    <bean id="clientValidator" class="com.dmnoky.taxidermy.validator.user.ClientValidator">
+        <property name="clientService" ref="clientService"/>
+        <property name="addressValidator" ref="addressValidator"/>
+        <property name="animalValidator" ref="animalValidator"/>
+    </bean>
+    <bean id="animalValidator" class="com.dmnoky.taxidermy.validator.animal.AnimalValidator">
+        <property name="animalService" ref="animalService"/>
+        <property name="productValidator" ref="productValidator"/>
+        <property name="clientValidator" ref="clientValidator"/>
+    </bean>
+    <bean id="productValidator" class="com.dmnoky.taxidermy.validator.product.ProductValidator">
+        <property name="productService" ref="productService"/>
+        <property name="addressValidator" ref="addressValidator"/>
+    </bean>
+    <bean id="addressValidator" class="com.dmnoky.taxidermy.validator.other.AddressValidator"/>
+    <bean id="fileValidator" class="com.dmnoky.taxidermy.validator.other.FileValidator"/>
+
+</beans>

@@ -1,0 +1,36 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    width:800px;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #effeff;
+}
+
+h2 {
+    border-top:black solid;
+    font-size: 26px;
+
+}
+
+input {
+    width: 100px;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+select {
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+button {
+    width: auto;
+    font-size: 16px;
+    margin-left: 5px;
+}
