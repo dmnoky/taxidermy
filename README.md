@@ -7,5 +7,6 @@
   1.	Spring Framework;
   2.	Spring Framework Security;
   3.	Hibernate.
-  (больше в pom.xml)
+ (больше в pom.xml)
+
 Также была интеграция программного обеспечения с базой данных MySQL.
